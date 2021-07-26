@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+/**
+ *   NodeJS-PasteServer | Copyright © 2021 | vironlab.eu 
+ *      ___    _______                        ______         ______
+ *      __ |  / /___(_)______________ _______ ___  / ______ ____  /_
+ *      __ | / / __  / __  ___/_  __ \__  __ \__  /  _  __ `/__  __ \
+ *      __ |/ /  _  /  _  /    / /_/ /_  / / /_  /___/ /_/ / _  /_/ /
+ *      _____/   /_/   /_/     \____/ /_/ /_/ /_____/\__,_/  /_.___/
+ *    ____  _______     _______ _     ___  ____  __  __ _____ _   _ _____
+ *   |  _ \| ____\ \   / / ____| |   / _ \|  _ \|  \/  | ____| \ | |_   _|
+ *   | | | |  _|  \ \ / /|  _| | |  | | | | |_) | |\/| |  _| |  \| | | |
+ *   | |_| | |___  \ V / | |___| |__| |_| |  __/| |  | | |___| |\  | | |
+ *   |____/|_____|  \_/  |_____|_____\___/|_|   |_|  |_|_____|_| \_| |_|
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   Contact:
+ *
+ *     Discordserver:   https://discord.gg/wvcX92VyEH
+ *     Website:         https://vironlab.eu/
+ *     Mail:            contact@vironlab.eu
+ *
+ */
+-->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>NodeJS-PasteServer</title>
+
+        <!-- Meta -->
+        <meta property="og:site_name" content="NodeJS-PasteServer" />
+        <meta property="og:locale" content="en" />
+        <meta property="og:image" content="https://cdn.vironlab.eu/images/logo.png" />
+        <meta property="og:url" content="https://github.com/VironLab/NodeJS-PasteServer" />
+        <meta property="og:title" content="NodeJS based Pasteserver" />
+        <meta property="og:description" content="A NodeJS based Pasteserver to share code and text." />
+        <meta name="description" content="A NodeJS based Pasteserver to share code and text." />
+
+        <link rel="canonical" href="https://github.com/VironLab/NodeJS-PasteServer" />
+
+        <!-- Vextension-Web -->
+        <script src="https://cdn.jsdelivr.net/npm/vextension-web@0.0.17/dist/vextension-web.min.js"></script>
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="style.min.css" />
+
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script defer src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        <script defer src="app.min.js"></script>
+    </head>
+    <body>
+        <noscript>
+            <link rel="stylesheet" href="noscript.min.css" />
+            <div class="noscript">
+                <h1 class="noscript-text">You need to enable JavaScript to run this page.</h1>
+            </div>
+        </noscript>
+
+        <div class="side-panel">
+            <div class="collapse-button"></div>
+            <div class="buttons">
+                <i id="saveButton" title="Save current document (CTRL + S)" class="material-icons">save</i>
+                <i id="deleteButton" title="Delete current document (CTRL + D)" class="material-icons">delete</i>
+                <i id="newDocButton" title="Create a new document (CTRL + N)" class="material-icons">note_add</i>
+                <i id="copyButton" title="Copy to clipboard (CTRL + ALT + C)" class="material-icons">file_copy</i>
+                <a href="https://github.com/VironLab/NodeJS-PasteServer"><i id="codeButton" title="View code" class="material-icons">code</i></a>
+                <p class="version"></p>
+            </div>
+        </div>
+
+        <div id="deleteModal" class="modal grey darken-3 white-text">
+            <div class="modal-content">
+                <h4>Delete document</h4>
+                <p>Enter the document-secret to delete it.</p>
+                <div class="input-field">
+                    <input id="deleteSecretInput" type="text" />
+                    <label for="deleteSecretInput">Delete-Secret</label>
+                </div>
+            </div>
+            <div class="modal-footer grey darken-3 white-text">
+                <a class="modal-close waves-effect waves-green btn-flat white-text">Cancel</a>
+                <a id="modalDeleteButton" class="modal-close waves-effect waves-green btn-flat white-text">Delete</a>
+            </div>
+        </div>
+
+        <pre id="codeBox" class="hljs">
+    <div class="codeLines"></div>
+    <code></code>
+</pre>
+        <textarea class="textArea" spellcheck="false"></textarea>
+        <div class="textBar">
+            <p></p>
+            <i class="material-icons">close</i>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,8 @@
+/node_modules
+/package-lock.json
+
+/.SSL/*.pem
+/.SSL/*.cert
+/.SSL/*.key
+
+/storage/database
